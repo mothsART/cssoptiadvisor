@@ -74,7 +74,6 @@ pub fn parse(
         for entry in WalkDir::new(path) {
             let _entry = entry.unwrap();
             if _entry.path().is_file() {
-                //print()
                 parse_file(&_entry.path(), results)?;
             }
         }
