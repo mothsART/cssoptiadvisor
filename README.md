@@ -6,11 +6,9 @@
 
 ## Features
 
-[x] keyframes : Suggest the value `0%` instead of `from`. (we save 1 character)
-
-[x] keyframes : Suggest the value `to` instead of `100%`. (we save 2 character)
-
-[x] keyframes : Suggest eliminating duplicate keys.
+- [x] keyframes : Suggest the value `0%` instead of `from`. (we save 1 character)
+- [x] keyframes : Suggest the value `to` instead of `100%`. (we save 2 character)
+- [x] keyframes : Suggest eliminating duplicate keys.
 
 ## Launch
 
