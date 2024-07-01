@@ -1,0 +1,8 @@
+@keyframes duplicates {
+    0%, 20% {
+        transform: translateY(0);
+    }
+    20% {
+        transform: translateY(10);
+    }
+}
