@@ -1,7 +1,9 @@
 use std::fs;
 use std::path::Path;
 use std::collections::HashSet;
+use std::io::{Error, ErrorKind};
 
+use walkdir::WalkDir;
 use cssparser::{Parser, ParserInput, ParseError};
 
 fn parse_keyframes_block<'i>(
@@ -43,7 +45,7 @@ fn parse_keyframes_block<'i>(
     Ok(())
 }
 
-pub fn parse(
+pub fn parse_file(
     path: &Path,
     results: &mut HashSet<String>,
 ) -> std::io::Result<()> {
@@ -62,4 +64,27 @@ pub fn parse(
         }
     }
     Ok(())
+}
+
+pub fn parse(
+    path: &Path,
+    results: &mut HashSet<String>,
+) -> std::io::Result<()> {
+    if path.is_dir() {
+        for entry in WalkDir::new(path) {
+            let _entry = entry.unwrap();
+            if _entry.path().is_file() {
+                //print()
+                parse_file(&_entry.path(), results)?;
+            }
+        }
+        return Ok(())
+    }
+    if path.is_file() {
+       return Ok(parse_file(&path, results)?);
+    }
+    Err(Error::new(
+        ErrorKind::Interrupted,
+        format!("Path \"{}\" doesn't exist.", path.display())
+    ))
 }
