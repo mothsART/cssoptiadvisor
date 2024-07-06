@@ -1,6 +1,7 @@
 use std::fs;
 use std::path::Path;
 use std::collections::HashSet;
+use ordered_float::OrderedFloat;
 use std::io::{Error, ErrorKind};
 
 use walkdir::WalkDir;
@@ -12,19 +13,19 @@ fn parse_keyframes_block<'i>(
     results: &mut HashSet<String>,
     input: &mut Parser<'i, '_>,
 ) -> Result<(), ParseError<'i, ()>> {
-    let mut keyframes_values = HashSet::new();
+    let mut keyframes_values: HashSet<OrderedFloat<f32>> = HashSet::new();
     while let Ok(token) = input.next() {
         match token {
             cssparser::Token::Percentage {unit_value, ..} => {
-                let cast_unit_v = (*unit_value * 100.2) as i32;
-                if keyframes_values.contains(&cast_unit_v) {
+                let cast_unit_v = *unit_value * 100.0;
+                if keyframes_values.contains(&OrderedFloat(*unit_value)) {
                     results.insert(format!(
                         "@keyframes \"{keyframes_name}\" : the value \"{cast_unit_v}%\" already exist in file \"{}\".",
                         path.display()
                     ));
                 }
 
-                keyframes_values.insert(cast_unit_v);
+                keyframes_values.insert(OrderedFloat(*unit_value));
                 if *unit_value == 1.0 {
                     results.insert(format!(
                         "@keyframes \"{keyframes_name}\" : the value \"100%\" can be replaced by \"to\" in file \"{}\".",
