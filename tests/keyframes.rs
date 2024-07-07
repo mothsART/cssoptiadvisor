@@ -34,7 +34,7 @@ mod tests {
         let _ = parse(path, &mut results);
 
         let mut expected_results: HashSet<String> = HashSet::new();
-        expected_results.insert("@keyframes \"duplicates_test_one\" : the value \"20%\" already exist in file \"tests/datasets/keyframes/duplicates.css\".".to_string());
+        expected_results.insert("@keyframes \"duplicates_test_one\" : the value \"20.15%\" already exist in file \"tests/datasets/keyframes/duplicates.css\".".to_string());
         assert_eq!(expected_results, results);
     }
 }
