@@ -1,0 +1,613 @@
+{
+  "outcomes": [
+    {
+      "scenario": "Baseline",
+      "summary": "Success",
+      "log_path": "log/baseline.log",
+      "diff_path": null,
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 7.271700495,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.100899547,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "Mutant": {
+          "package": "cssoptiadvisor",
+          "file": "src/lib.rs",
+          "function": {
+            "function_name": "parse_file",
+            "return_type": "-> std::io::Result<()>",
+            "span": {
+              "start": {
+                "line": 83,
+                "column": 1
+              },
+              "end": {
+                "line": 106,
+                "column": 2
+              }
+            }
+          },
+          "span": {
+            "start": {
+              "line": 87,
+              "column": 5
+            },
+            "end": {
+              "line": 105,
+              "column": 11
+            }
+          },
+          "replacement": "Ok(())",
+          "genre": "FnValue"
+        }
+      },
+      "summary": "CaughtMutant",
+      "log_path": "log/src__lib.rs_line_87_col_5.log",
+      "diff_path": "diff/src__lib.rs_line_87_col_5.diff",
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 0.603270548,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.05070493,
+          "process_status": {
+            "Failure": 101
+          },
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "Mutant": {
+          "package": "cssoptiadvisor",
+          "file": "src/lib.rs",
+          "function": {
+            "function_name": "parse",
+            "return_type": "-> std::io::Result<()>",
+            "span": {
+              "start": {
+                "line": 108,
+                "column": 1
+              },
+              "end": {
+                "line": 128,
+                "column": 2
+              }
+            }
+          },
+          "span": {
+            "start": {
+              "line": 112,
+              "column": 5
+            },
+            "end": {
+              "line": 127,
+              "column": 7
+            }
+          },
+          "replacement": "Ok(())",
+          "genre": "FnValue"
+        }
+      },
+      "summary": "CaughtMutant",
+      "log_path": "log/src__lib.rs_line_112_col_5.log",
+      "diff_path": "diff/src__lib.rs_line_112_col_5.diff",
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 0.704420225,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.051061704,
+          "process_status": {
+            "Failure": 101
+          },
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "Mutant": {
+          "package": "cssoptiadvisor",
+          "file": "src/lib.rs",
+          "function": {
+            "function_name": "parse_keyframes_block",
+            "return_type": "-> Result<(), ParseError<'i, ()>>",
+            "span": {
+              "start": {
+                "line": 34,
+                "column": 1
+              },
+              "end": {
+                "line": 81,
+                "column": 2
+              }
+            }
+          },
+          "span": {
+            "start": {
+              "line": 40,
+              "column": 5
+            },
+            "end": {
+              "line": 80,
+              "column": 11
+            }
+          },
+          "replacement": "Ok(())",
+          "genre": "FnValue"
+        }
+      },
+      "summary": "CaughtMutant",
+      "log_path": "log/src__lib.rs_line_40_col_5.log",
+      "diff_path": "diff/src__lib.rs_line_40_col_5.diff",
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 0.653497783,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.052453943,
+          "process_status": {
+            "Failure": 101
+          },
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "Mutant": {
+          "package": "cssoptiadvisor",
+          "file": "src/lib.rs",
+          "function": {
+            "function_name": "parse_keyframes_block",
+            "return_type": "-> Result<(), ParseError<'i, ()>>",
+            "span": {
+              "start": {
+                "line": 34,
+                "column": 1
+              },
+              "end": {
+                "line": 81,
+                "column": 2
+              }
+            }
+          },
+          "span": {
+            "start": {
+              "line": 46,
+              "column": 48
+            },
+            "end": {
+              "line": 46,
+              "column": 49
+            }
+          },
+          "replacement": "/",
+          "genre": "BinaryOperator"
+        }
+      },
+      "summary": "CaughtMutant",
+      "log_path": "log/src__lib.rs_line_46_col_48.log",
+      "diff_path": "diff/src__lib.rs_line_46_col_48.diff",
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 0.854134567,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.050701506,
+          "process_status": {
+            "Failure": 101
+          },
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "Mutant": {
+          "package": "cssoptiadvisor",
+          "file": "src/lib.rs",
+          "function": {
+            "function_name": "parse_keyframes_block",
+            "return_type": "-> Result<(), ParseError<'i, ()>>",
+            "span": {
+              "start": {
+                "line": 34,
+                "column": 1
+              },
+              "end": {
+                "line": 81,
+                "column": 2
+              }
+            }
+          },
+          "span": {
+            "start": {
+              "line": 64,
+              "column": 27
+            },
+            "end": {
+              "line": 64,
+              "column": 29
+            }
+          },
+          "replacement": "!=",
+          "genre": "BinaryOperator"
+        }
+      },
+      "summary": "CaughtMutant",
+      "log_path": "log/src__lib.rs_line_64_col_27.log",
+      "diff_path": "diff/src__lib.rs_line_64_col_27.diff",
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 0.656091218,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.051993653,
+          "process_status": {
+            "Failure": 101
+          },
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "Mutant": {
+          "package": "cssoptiadvisor",
+          "file": "src/lib.rs",
+          "function": {
+            "function_name": "parse_keyframe_values_block",
+            "return_type": "-> Result<(), ParseError<'i, ()>>",
+            "span": {
+              "start": {
+                "line": 11,
+                "column": 1
+              },
+              "end": {
+                "line": 32,
+                "column": 2
+              }
+            }
+          },
+          "span": {
+            "start": {
+              "line": 17,
+              "column": 5
+            },
+            "end": {
+              "line": 31,
+              "column": 11
+            }
+          },
+          "replacement": "Ok(())",
+          "genre": "FnValue"
+        }
+      },
+      "summary": "MissedMutant",
+      "log_path": "log/src__lib.rs_line_17_col_5.log",
+      "diff_path": "diff/src__lib.rs_line_17_col_5.diff",
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 0.705765094,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.101310281,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "Mutant": {
+          "package": "cssoptiadvisor",
+          "file": "src/lib.rs",
+          "function": {
+            "function_name": "parse_keyframes_block",
+            "return_type": "-> Result<(), ParseError<'i, ()>>",
+            "span": {
+              "start": {
+                "line": 34,
+                "column": 1
+              },
+              "end": {
+                "line": 81,
+                "column": 2
+              }
+            }
+          },
+          "span": {
+            "start": {
+              "line": 55,
+              "column": 32
+            },
+            "end": {
+              "line": 55,
+              "column": 34
+            }
+          },
+          "replacement": "!=",
+          "genre": "BinaryOperator"
+        }
+      },
+      "summary": "CaughtMutant",
+      "log_path": "log/src__lib.rs_line_55_col_32.log",
+      "diff_path": "diff/src__lib.rs_line_55_col_32.diff",
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 0.805584371,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.101515952,
+          "process_status": {
+            "Failure": 101
+          },
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "Mutant": {
+          "package": "cssoptiadvisor",
+          "file": "src/lib.rs",
+          "function": {
+            "function_name": "parse_keyframes_block",
+            "return_type": "-> Result<(), ParseError<'i, ()>>",
+            "span": {
+              "start": {
+                "line": 34,
+                "column": 1
+              },
+              "end": {
+                "line": 81,
+                "column": 2
+              }
+            }
+          },
+          "span": {
+            "start": {
+              "line": 46,
+              "column": 48
+            },
+            "end": {
+              "line": 46,
+              "column": 49
+            }
+          },
+          "replacement": "+",
+          "genre": "BinaryOperator"
+        }
+      },
+      "summary": "CaughtMutant",
+      "log_path": "log/src__lib.rs_line_46_col_48_001.log",
+      "diff_path": "diff/src__lib.rs_line_46_col_48_001.diff",
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 0.757389659,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.053096027,
+          "process_status": {
+            "Failure": 101
+          },
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": {
+        "Mutant": {
+          "package": "cssoptiadvisor",
+          "file": "src/main.rs",
+          "function": {
+            "function_name": "main",
+            "return_type": "",
+            "span": {
+              "start": {
+                "line": 16,
+                "column": 1
+              },
+              "end": {
+                "line": 25,
+                "column": 2
+              }
+            }
+          },
+          "span": {
+            "start": {
+              "line": 17,
+              "column": 5
+            },
+            "end": {
+              "line": 24,
+              "column": 6
+            }
+          },
+          "replacement": "()",
+          "genre": "FnValue"
+        }
+      },
+      "summary": "MissedMutant",
+      "log_path": "log/src__main.rs_line_17_col_5.log",
+      "diff_path": "diff/src__main.rs_line_17_col_5.diff",
+      "phase_results": [
+        {
+          "phase": "Build",
+          "duration": 0.403945065,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--no-run",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        },
+        {
+          "phase": "Test",
+          "duration": 0.100841034,
+          "process_status": "Success",
+          "argv": [
+            "/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo",
+            "test",
+            "--verbose",
+            "--package=cssoptiadvisor@0.1.0"
+          ]
+        }
+      ]
+    }
+  ],
+  "total_mutants": 9,
+  "missed": 2,
+  "caught": 7,
+  "timeout": 0,
+  "unviable": 0,
+  "success": 0
+}

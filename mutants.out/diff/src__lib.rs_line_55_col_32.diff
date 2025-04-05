@@ -1,0 +1,21 @@
+--- src/lib.rs
++++ replace == with != in parse_keyframes_block
+@@ -47,17 +47,17 @@
+                 if keyframes_values.contains(&OrderedFloat(*unit_value)) {
+                     results.insert(format!(
+                         "@keyframes \"{keyframes_name}\" : the value \"{cast_unit_v}%\" already exist in file \"{}\".",
+                         path.display()
+                     ));
+                 }
+ 
+                 keyframes_values.insert(OrderedFloat(*unit_value));
+-                if *unit_value == 1.0 {
++                if *unit_value != /* ~ changed by cargo-mutants ~ */ 1.0 {
+                     results.insert(format!(
+                         "@keyframes \"{keyframes_name}\" : the value \"100%\" can be replaced by \"to\" in file \"{}\".",
+                         path.display()
+                     ));
+                 }
+             }
+             Token::Ident(value) => {
+                 println!("&&& {:?}", value);

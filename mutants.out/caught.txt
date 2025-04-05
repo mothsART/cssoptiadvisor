@@ -1,0 +1,7 @@
+src/lib.rs:87:5: replace parse_file -> std::io::Result<()> with Ok(())
+src/lib.rs:112:5: replace parse -> std::io::Result<()> with Ok(())
+src/lib.rs:40:5: replace parse_keyframes_block -> Result<(), ParseError<'i, ()>> with Ok(())
+src/lib.rs:46:48: replace * with / in parse_keyframes_block
+src/lib.rs:64:27: replace == with != in parse_keyframes_block
+src/lib.rs:55:32: replace == with != in parse_keyframes_block
+src/lib.rs:46:48: replace * with + in parse_keyframes_block

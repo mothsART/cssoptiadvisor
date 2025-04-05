@@ -1,0 +1,21 @@
+--- src/lib.rs
++++ replace == with != in parse_keyframes_block
+@@ -56,17 +56,17 @@
+                     results.insert(format!(
+                         "@keyframes \"{keyframes_name}\" : the value \"100%\" can be replaced by \"to\" in file \"{}\".",
+                         path.display()
+                     ));
+                 }
+             }
+             Token::Ident(value) => {
+                 println!("&&& {:?}", value);
+-                if *value == "from" {
++                if *value != /* ~ changed by cargo-mutants ~ */ "from" {
+                     results.insert(format!(
+                         "@keyframes \"{keyframes_name}\" : the value \"from\" can be replaced by \"0%\" in file \"{}\".",
+                         path.display()
+                     ));
+                 }
+                 // TODO : value is different than "from", "to" and a percentage.
+             }
+             Token::CurlyBracketBlock => {

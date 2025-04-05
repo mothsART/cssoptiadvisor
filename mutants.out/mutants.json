@@ -1,0 +1,272 @@
+[
+  {
+    "package": "cssoptiadvisor",
+    "file": "src/lib.rs",
+    "function": {
+      "function_name": "parse_file",
+      "return_type": "-> std::io::Result<()>",
+      "span": {
+        "start": {
+          "line": 83,
+          "column": 1
+        },
+        "end": {
+          "line": 106,
+          "column": 2
+        }
+      }
+    },
+    "span": {
+      "start": {
+        "line": 87,
+        "column": 5
+      },
+      "end": {
+        "line": 105,
+        "column": 11
+      }
+    },
+    "replacement": "Ok(())",
+    "genre": "FnValue"
+  },
+  {
+    "package": "cssoptiadvisor",
+    "file": "src/lib.rs",
+    "function": {
+      "function_name": "parse",
+      "return_type": "-> std::io::Result<()>",
+      "span": {
+        "start": {
+          "line": 108,
+          "column": 1
+        },
+        "end": {
+          "line": 128,
+          "column": 2
+        }
+      }
+    },
+    "span": {
+      "start": {
+        "line": 112,
+        "column": 5
+      },
+      "end": {
+        "line": 127,
+        "column": 7
+      }
+    },
+    "replacement": "Ok(())",
+    "genre": "FnValue"
+  },
+  {
+    "package": "cssoptiadvisor",
+    "file": "src/lib.rs",
+    "function": {
+      "function_name": "parse_keyframes_block",
+      "return_type": "-> Result<(), ParseError<'i, ()>>",
+      "span": {
+        "start": {
+          "line": 34,
+          "column": 1
+        },
+        "end": {
+          "line": 81,
+          "column": 2
+        }
+      }
+    },
+    "span": {
+      "start": {
+        "line": 40,
+        "column": 5
+      },
+      "end": {
+        "line": 80,
+        "column": 11
+      }
+    },
+    "replacement": "Ok(())",
+    "genre": "FnValue"
+  },
+  {
+    "package": "cssoptiadvisor",
+    "file": "src/lib.rs",
+    "function": {
+      "function_name": "parse_keyframes_block",
+      "return_type": "-> Result<(), ParseError<'i, ()>>",
+      "span": {
+        "start": {
+          "line": 34,
+          "column": 1
+        },
+        "end": {
+          "line": 81,
+          "column": 2
+        }
+      }
+    },
+    "span": {
+      "start": {
+        "line": 46,
+        "column": 48
+      },
+      "end": {
+        "line": 46,
+        "column": 49
+      }
+    },
+    "replacement": "/",
+    "genre": "BinaryOperator"
+  },
+  {
+    "package": "cssoptiadvisor",
+    "file": "src/lib.rs",
+    "function": {
+      "function_name": "parse_keyframes_block",
+      "return_type": "-> Result<(), ParseError<'i, ()>>",
+      "span": {
+        "start": {
+          "line": 34,
+          "column": 1
+        },
+        "end": {
+          "line": 81,
+          "column": 2
+        }
+      }
+    },
+    "span": {
+      "start": {
+        "line": 64,
+        "column": 27
+      },
+      "end": {
+        "line": 64,
+        "column": 29
+      }
+    },
+    "replacement": "!=",
+    "genre": "BinaryOperator"
+  },
+  {
+    "package": "cssoptiadvisor",
+    "file": "src/lib.rs",
+    "function": {
+      "function_name": "parse_keyframe_values_block",
+      "return_type": "-> Result<(), ParseError<'i, ()>>",
+      "span": {
+        "start": {
+          "line": 11,
+          "column": 1
+        },
+        "end": {
+          "line": 32,
+          "column": 2
+        }
+      }
+    },
+    "span": {
+      "start": {
+        "line": 17,
+        "column": 5
+      },
+      "end": {
+        "line": 31,
+        "column": 11
+      }
+    },
+    "replacement": "Ok(())",
+    "genre": "FnValue"
+  },
+  {
+    "package": "cssoptiadvisor",
+    "file": "src/lib.rs",
+    "function": {
+      "function_name": "parse_keyframes_block",
+      "return_type": "-> Result<(), ParseError<'i, ()>>",
+      "span": {
+        "start": {
+          "line": 34,
+          "column": 1
+        },
+        "end": {
+          "line": 81,
+          "column": 2
+        }
+      }
+    },
+    "span": {
+      "start": {
+        "line": 55,
+        "column": 32
+      },
+      "end": {
+        "line": 55,
+        "column": 34
+      }
+    },
+    "replacement": "!=",
+    "genre": "BinaryOperator"
+  },
+  {
+    "package": "cssoptiadvisor",
+    "file": "src/lib.rs",
+    "function": {
+      "function_name": "parse_keyframes_block",
+      "return_type": "-> Result<(), ParseError<'i, ()>>",
+      "span": {
+        "start": {
+          "line": 34,
+          "column": 1
+        },
+        "end": {
+          "line": 81,
+          "column": 2
+        }
+      }
+    },
+    "span": {
+      "start": {
+        "line": 46,
+        "column": 48
+      },
+      "end": {
+        "line": 46,
+        "column": 49
+      }
+    },
+    "replacement": "+",
+    "genre": "BinaryOperator"
+  },
+  {
+    "package": "cssoptiadvisor",
+    "file": "src/main.rs",
+    "function": {
+      "function_name": "main",
+      "return_type": "",
+      "span": {
+        "start": {
+          "line": 16,
+          "column": 1
+        },
+        "end": {
+          "line": 25,
+          "column": 2
+        }
+      }
+    },
+    "span": {
+      "start": {
+        "line": 17,
+        "column": 5
+      },
+      "end": {
+        "line": 24,
+        "column": 6
+      }
+    },
+    "replacement": "()",
+    "genre": "FnValue"
+  }
+]

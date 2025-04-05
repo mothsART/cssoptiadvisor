@@ -1,0 +1,21 @@
+--- src/lib.rs
++++ replace * with + in parse_keyframes_block
+@@ -38,17 +38,17 @@
+     input: &mut Parser<'i, '_>,
+ ) -> Result<(), ParseError<'i, ()>> {
+     let mut keyframes_values: HashSet<OrderedFloat<f32>> = HashSet::new();
+     let mut key_value = "".to_string();
+ 
+     while let Ok(token) = input.next() {
+         match token {
+             Token::Percentage {unit_value, ..} => {
+-                let cast_unit_v = (*unit_value * 100.0).to_string();
++                let cast_unit_v = (*unit_value + /* ~ changed by cargo-mutants ~ */ 100.0).to_string();
+                 if keyframes_values.contains(&OrderedFloat(*unit_value)) {
+                     results.insert(format!(
+                         "@keyframes \"{keyframes_name}\" : the value \"{cast_unit_v}%\" already exist in file \"{}\".",
+                         path.display()
+                     ));
+                 }
+ 
+                 keyframes_values.insert(OrderedFloat(*unit_value));

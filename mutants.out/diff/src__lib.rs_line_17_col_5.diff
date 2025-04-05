@@ -1,0 +1,35 @@
+--- src/lib.rs
++++ replace parse_keyframe_values_block -> Result<(), ParseError<'i, ()>> with Ok(())
+@@ -9,31 +9,17 @@
+ use cssparser::{ParseError, Parser, ParserInput, ToCss, Token};
+ 
+ fn parse_keyframe_values_block<'i>(
+     path: &Path,
+     keyframes_name: &String,
+     results: &mut HashSet<String>,
+     input: &mut Parser<'i, '_>,
+ ) -> Result<(), ParseError<'i, ()>> {
+-    while let Ok(token) = input.next() {
+-        let mut d = String::new();
+-        let r = token.to_css(&mut d);
+-        print!("{d}\n");
+-
+-        match token {
+-            Token::Function(name) => {
+-                println!(">> {:?}", name);
+-            }
+-            _ => {
+-                println!(">> {:?}", token);
+-            }
+-        }
+-    }
+-    Ok(())
++    Ok(()) /* ~ changed by cargo-mutants ~ */
+ }
+ 
+ fn parse_keyframes_block<'i>(
+     path: &Path,
+     keyframes_name: &String,
+     results: &mut HashSet<String>,
+     input: &mut Parser<'i, '_>,
+ ) -> Result<(), ParseError<'i, ()>> {

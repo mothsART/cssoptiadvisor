@@ -1,8 +1,8 @@
-use std::path::PathBuf;
 use std::collections::HashSet;
+use std::path::PathBuf;
 
-use colored::Colorize;
 use clap::Parser;
+use colored::Colorize;
 
 use cssoptiadvisor::parse;
 
@@ -15,7 +15,7 @@ struct Cli {
 
 fn main() {
     let cli = Cli::parse();
-    
+
     let mut results: HashSet<String> = HashSet::new();
     let _ = parse(&cli.path, &mut results);
 

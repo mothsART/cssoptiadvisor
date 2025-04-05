@@ -1,0 +1,5 @@
+@keyframes from_test {
+    random {
+        transform: translateY(0);
+    }
+}

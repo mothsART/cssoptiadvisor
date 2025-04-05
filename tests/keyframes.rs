@@ -1,8 +1,8 @@
 #[cfg(test)]
 mod tests {
-    use std::path::Path;
     use std::collections::HashSet;
-    
+    use std::path::Path;
+
     use cssoptiadvisor::parse;
 
     #[test]
@@ -25,6 +25,14 @@ mod tests {
         let mut expected_results: HashSet<String> = HashSet::new();
         expected_results.insert("@keyframes \"from_test\" : the value \"from\" can be replaced by \"0%\" in file \"tests/datasets/keyframes/from.css\".".to_string());
         assert_eq!(expected_results, results);
+    }
+
+    #[test]
+    fn keyframe_without_from() {
+        let path = Path::new("tests/datasets/keyframes/without_from.css");
+        let mut results: HashSet<String> = HashSet::new();
+        let _ = parse(path, &mut results);
+        assert_eq!(HashSet::new(), results);
     }
 
     #[test]

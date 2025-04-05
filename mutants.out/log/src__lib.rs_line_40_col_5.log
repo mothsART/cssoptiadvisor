@@ -1,0 +1,362 @@
+
+*** src/lib.rs:40:5: replace parse_keyframes_block -> Result<(), ParseError<'i, ()>> with Ok(())
+
+*** mutation diff:
+--- src/lib.rs
++++ replace parse_keyframes_block -> Result<(), ParseError<'i, ()>> with Ok(())
+@@ -32,57 +32,17 @@
+ }
+ 
+ fn parse_keyframes_block<'i>(
+     path: &Path,
+     keyframes_name: &String,
+     results: &mut HashSet<String>,
+     input: &mut Parser<'i, '_>,
+ ) -> Result<(), ParseError<'i, ()>> {
+-    let mut keyframes_values: HashSet<OrderedFloat<f32>> = HashSet::new();
+-    let mut key_value = "".to_string();
+-
+-    while let Ok(token) = input.next() {
+-        match token {
+-            Token::Percentage {unit_value, ..} => {
+-                let cast_unit_v = (*unit_value * 100.0).to_string();
+-                if keyframes_values.contains(&OrderedFloat(*unit_value)) {
+-                    results.insert(format!(
+-                        "@keyframes \"{keyframes_name}\" : the value \"{cast_unit_v}%\" already exist in file \"{}\".",
+-                        path.display()
+-                    ));
+-                }
+-
+-                keyframes_values.insert(OrderedFloat(*unit_value));
+-                if *unit_value == 1.0 {
+-                    results.insert(format!(
+-                        "@keyframes \"{keyframes_name}\" : the value \"100%\" can be replaced by \"to\" in file \"{}\".",
+-                        path.display()
+-                    ));
+-                }
+-            }
+-            Token::Ident(value) => {
+-                println!("&&& {:?}", value);
+-                if *value == "from" {
+-                    results.insert(format!(
+-                        "@keyframes \"{keyframes_name}\" : the value \"from\" can be replaced by \"0%\" in file \"{}\".",
+-                        path.display()
+-                    ));
+-                }
+-                // TODO : value is different than "from", "to" and a percentage.
+-            }
+-            Token::CurlyBracketBlock => {
+-                let _ = input.parse_nested_block(|input| {
+-                    parse_keyframe_values_block(path, &keyframes_name, results, input)
+-                });
+-            }
+-            _ => {}
+-        }
+-    }
+-    Ok(())
++    Ok(()) /* ~ changed by cargo-mutants ~ */
+ }
+ 
+ pub fn parse_file(
+     path: &Path,
+     results: &mut HashSet<String>,
+ ) -> std::io::Result<()> {
+     let contents = fs::read_to_string(path)?;
+     let mut input = ParserInput::new(&contents);
+
+
+*** /home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo test --no-run --verbose --package=cssoptiadvisor@0.1.0
+       Fresh unicode-ident v1.0.12
+       Fresh proc-macro2 v1.0.86
+       Fresh quote v1.0.36
+       Fresh siphasher v0.3.11
+       Fresh rand_core v0.6.4
+       Fresh utf8parse v0.2.2
+       Fresh autocfg v1.3.0
+       Fresh syn v2.0.68
+       Fresh rand v0.8.5
+       Fresh anstyle-parse v0.2.4
+       Fresh phf_generator v0.11.2
+       Fresh colorchoice v1.0.1
+       Fresh is_terminal_polyfill v1.70.0
+       Fresh anstyle-query v1.1.0
+       Fresh anstyle v1.0.7
+       Fresh anstream v0.6.14
+       Fresh phf_macros v0.11.2
+       Fresh phf_shared v0.11.2
+       Fresh strsim v0.11.1
+       Fresh dtoa v1.0.9
+       Fresh heck v0.5.0
+       Fresh clap_lex v0.7.1
+       Fresh phf v0.11.2
+       Fresh num-traits v0.2.19
+       Fresh dtoa-short v0.3.5
+       Fresh clap_builder v4.5.8
+       Fresh clap_derive v4.5.8
+       Fresh cssparser-macros v0.6.1
+       Fresh itoa v1.0.11
+       Fresh same-file v1.0.6
+       Fresh lazy_static v1.5.0
+       Fresh smallvec v1.13.2
+       Fresh clap v4.5.8
+       Fresh ordered-float v2.10.1
+       Fresh walkdir v2.5.0
+       Fresh cssparser v0.34.0
+       Fresh colored v2.1.0
+       Dirty cssoptiadvisor v0.1.0 (/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp): the file `src/lib.rs` has changed (1743851208.545065428s, 1s after last build at 1743851207.819080454s)
+   Compiling cssoptiadvisor v0.1.0 (/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp)
+     Running `/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc --crate-name cssoptiadvisor --edition=2021 src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --emit=dep-info,link -C embed-bitcode=no -C debuginfo=2 --test --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=26cb620a6488bed3 -C extra-filename=-b3931f3f28570292 --out-dir /tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps -C incremental=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/incremental -L dependency=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps --extern clap=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libclap-83aa661241fb19ca.rlib --extern colored=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcolored-d94590812d048828.rlib --extern cssparser=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcssparser-f6df9cc49aaf6b91.rlib --extern ordered_float=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libordered_float-81b00d9a1cb21fad.rlib --extern walkdir=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libwalkdir-81ddc7a3542fb472.rlib`
+     Running `/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc --crate-name cssoptiadvisor --edition=2021 src/lib.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type lib --emit=dep-info,metadata,link -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=379d8c4ff8cdab88 -C extra-filename=-d3fb1f733272ac6a --out-dir /tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps -C incremental=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/incremental -L dependency=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps --extern clap=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libclap-83aa661241fb19ca.rmeta --extern colored=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcolored-d94590812d048828.rmeta --extern cssparser=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcssparser-f6df9cc49aaf6b91.rmeta --extern ordered_float=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libordered_float-81b00d9a1cb21fad.rmeta --extern walkdir=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libwalkdir-81ddc7a3542fb472.rmeta`
+warning: unused imports: `Hash` and `Hasher`
+ --> src/lib.rs:3:17
+  |
+3 | use std::hash::{Hash, Hasher};
+  |                 ^^^^  ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `ordered_float::OrderedFloat`
+ --> src/lib.rs:7:5
+  |
+7 | use ordered_float::OrderedFloat;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `r`
+  --> src/lib.rs:19:13
+   |
+19 |         let r = token.to_css(&mut d);
+   |             ^ help: if this is intentional, prefix it with an underscore: `_r`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `path`
+  --> src/lib.rs:12:5
+   |
+12 |     path: &Path,
+   |     ^^^^ help: if this is intentional, prefix it with an underscore: `_path`
+
+warning: unused variable: `keyframes_name`
+  --> src/lib.rs:13:5
+   |
+13 |     keyframes_name: &String,
+   |     ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_keyframes_name`
+
+warning: unused variable: `results`
+  --> src/lib.rs:14:5
+   |
+14 |     results: &mut HashSet<String>,
+   |     ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_results`
+
+warning: unused variable: `path`
+  --> src/lib.rs:35:5
+   |
+35 |     path: &Path,
+   |     ^^^^ help: if this is intentional, prefix it with an underscore: `_path`
+
+warning: unused variable: `keyframes_name`
+  --> src/lib.rs:36:5
+   |
+36 |     keyframes_name: &String,
+   |     ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_keyframes_name`
+
+warning: unused variable: `results`
+  --> src/lib.rs:37:5
+   |
+37 |     results: &mut HashSet<String>,
+   |     ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_results`
+
+warning: unused variable: `input`
+  --> src/lib.rs:38:5
+   |
+38 |     input: &mut Parser<'i, '_>,
+   |     ^^^^^ help: if this is intentional, prefix it with an underscore: `_input`
+
+warning: function `parse_keyframe_values_block` is never used
+  --> src/lib.rs:11:4
+   |
+11 | fn parse_keyframe_values_block<'i>(
+   |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: `cssoptiadvisor` (lib) generated 11 warnings (11 duplicates)
+     Running `/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc --crate-name keyframes --edition=2021 tests/keyframes.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --emit=dep-info,link -C embed-bitcode=no -C debuginfo=2 --test --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=d8a6e850bfb81e9f -C extra-filename=-6b5b1e478b1bf5bc --out-dir /tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps -C incremental=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/incremental -L dependency=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps --extern clap=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libclap-83aa661241fb19ca.rlib --extern colored=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcolored-d94590812d048828.rlib --extern cssoptiadvisor=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcssoptiadvisor-d3fb1f733272ac6a.rlib --extern cssparser=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcssparser-f6df9cc49aaf6b91.rlib --extern ordered_float=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libordered_float-81b00d9a1cb21fad.rlib --extern walkdir=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libwalkdir-81ddc7a3542fb472.rlib`
+     Running `/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc --crate-name cssoptiadvisor --edition=2021 src/main.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --crate-type bin --emit=dep-info,link -C embed-bitcode=no -C debuginfo=2 --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=6328c91a0d39888f -C extra-filename=-575e096a07a443dc --out-dir /tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps -C incremental=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/incremental -L dependency=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps --extern clap=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libclap-83aa661241fb19ca.rlib --extern colored=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcolored-d94590812d048828.rlib --extern cssoptiadvisor=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcssoptiadvisor-d3fb1f733272ac6a.rlib --extern cssparser=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcssparser-f6df9cc49aaf6b91.rlib --extern ordered_float=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libordered_float-81b00d9a1cb21fad.rlib --extern walkdir=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libwalkdir-81ddc7a3542fb472.rlib`
+     Running `/home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/rustc --crate-name cssoptiadvisor --edition=2021 src/main.rs --error-format=json --json=diagnostic-rendered-ansi,artifacts,future-incompat --emit=dep-info,link -C embed-bitcode=no -C debuginfo=2 --test --check-cfg 'cfg(docsrs,test)' --check-cfg 'cfg(feature, values())' -C metadata=690166e5c87b5831 -C extra-filename=-330f8a5b0e979e4d --out-dir /tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps -C incremental=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/incremental -L dependency=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps --extern clap=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libclap-83aa661241fb19ca.rlib --extern colored=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcolored-d94590812d048828.rlib --extern cssoptiadvisor=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcssoptiadvisor-d3fb1f733272ac6a.rlib --extern cssparser=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libcssparser-f6df9cc49aaf6b91.rlib --extern ordered_float=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libordered_float-81b00d9a1cb21fad.rlib --extern walkdir=/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/libwalkdir-81ddc7a3542fb472.rlib`
+warning: `cssoptiadvisor` (lib test) generated 11 warnings (run `cargo fix --lib -p cssoptiadvisor --tests` to apply 2 suggestions)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.61s
+  Executable `/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/cssoptiadvisor-b3931f3f28570292`
+  Executable `/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/cssoptiadvisor-330f8a5b0e979e4d`
+  Executable `/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/keyframes-6b5b1e478b1bf5bc`
+
+*** result: Success
+
+*** /home/jferry/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/bin/cargo test --verbose --package=cssoptiadvisor@0.1.0
+       Fresh unicode-ident v1.0.12
+       Fresh siphasher v0.3.11
+       Fresh rand_core v0.6.4
+       Fresh utf8parse v0.2.2
+       Fresh autocfg v1.3.0
+       Fresh proc-macro2 v1.0.86
+       Fresh rand v0.8.5
+       Fresh anstyle-parse v0.2.4
+       Fresh quote v1.0.36
+       Fresh phf_generator v0.11.2
+       Fresh anstyle-query v1.1.0
+       Fresh is_terminal_polyfill v1.70.0
+       Fresh anstyle v1.0.7
+       Fresh syn v2.0.68
+       Fresh colorchoice v1.0.1
+       Fresh phf_shared v0.11.2
+       Fresh dtoa v1.0.9
+       Fresh anstream v0.6.14
+       Fresh phf_macros v0.11.2
+       Fresh heck v0.5.0
+       Fresh clap_lex v0.7.1
+       Fresh strsim v0.11.1
+       Fresh clap_builder v4.5.8
+       Fresh clap_derive v4.5.8
+       Fresh phf v0.11.2
+       Fresh dtoa-short v0.3.5
+       Fresh cssparser-macros v0.6.1
+       Fresh num-traits v0.2.19
+       Fresh smallvec v1.13.2
+       Fresh itoa v1.0.11
+       Fresh same-file v1.0.6
+       Fresh lazy_static v1.5.0
+       Fresh ordered-float v2.10.1
+       Fresh cssparser v0.34.0
+       Fresh walkdir v2.5.0
+       Fresh colored v2.1.0
+       Fresh clap v4.5.8
+warning: unused imports: `Hash` and `Hasher`
+ --> src/lib.rs:3:17
+  |
+3 | use std::hash::{Hash, Hasher};
+  |                 ^^^^  ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `ordered_float::OrderedFloat`
+ --> src/lib.rs:7:5
+  |
+7 | use ordered_float::OrderedFloat;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `r`
+  --> src/lib.rs:19:13
+   |
+19 |         let r = token.to_css(&mut d);
+   |             ^ help: if this is intentional, prefix it with an underscore: `_r`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `path`
+  --> src/lib.rs:12:5
+   |
+12 |     path: &Path,
+   |     ^^^^ help: if this is intentional, prefix it with an underscore: `_path`
+
+warning: unused variable: `keyframes_name`
+  --> src/lib.rs:13:5
+   |
+13 |     keyframes_name: &String,
+   |     ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_keyframes_name`
+
+warning: unused variable: `results`
+  --> src/lib.rs:14:5
+   |
+14 |     results: &mut HashSet<String>,
+   |     ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_results`
+
+warning: unused variable: `path`
+  --> src/lib.rs:35:5
+   |
+35 |     path: &Path,
+   |     ^^^^ help: if this is intentional, prefix it with an underscore: `_path`
+
+warning: unused variable: `keyframes_name`
+  --> src/lib.rs:36:5
+   |
+36 |     keyframes_name: &String,
+   |     ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_keyframes_name`
+
+warning: unused variable: `results`
+  --> src/lib.rs:37:5
+   |
+37 |     results: &mut HashSet<String>,
+   |     ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_results`
+
+warning: unused variable: `input`
+  --> src/lib.rs:38:5
+   |
+38 |     input: &mut Parser<'i, '_>,
+   |     ^^^^^ help: if this is intentional, prefix it with an underscore: `_input`
+
+warning: function `parse_keyframe_values_block` is never used
+  --> src/lib.rs:11:4
+   |
+11 | fn parse_keyframe_values_block<'i>(
+   |    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(dead_code)]` on by default
+
+warning: `cssoptiadvisor` (lib) generated 11 warnings (run `cargo fix --lib -p cssoptiadvisor` to apply 2 suggestions)
+warning: `cssoptiadvisor` (lib test) generated 11 warnings (11 duplicates)
+       Fresh cssoptiadvisor v0.1.0 (/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.02s
+     Running `/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/cssoptiadvisor-b3931f3f28570292`
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running `/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/cssoptiadvisor-330f8a5b0e979e4d`
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running `/tmp/cargo-mutants-cssoptiadvisor-adlO19.tmp/target/debug/deps/keyframes-6b5b1e478b1bf5bc`
+
+running 4 tests
+test tests::keyframe_without_from ... ok
+test tests::keyframe_duplicates ... FAILED
+test tests::keyframe_to ... FAILED
+test tests::keyframe_from ... FAILED
+
+failures:
+
+---- tests::keyframe_duplicates stdout ----
+
+thread 'tests::keyframe_duplicates' panicked at tests/keyframes.rs:46:9:
+assertion `left == right` failed
+  left: {"@keyframes \"duplicates_test_one\" : the value \"20.15%\" already exist in file \"tests/datasets/keyframes/duplicates.css\"."}
+ right: {}
+note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace
+
+---- tests::keyframe_to stdout ----
+
+thread 'tests::keyframe_to' panicked at tests/keyframes.rs:16:9:
+assertion `left == right` failed
+  left: {"@keyframes \"to_test\" : the value \"100%\" can be replaced by \"to\" in file \"tests/datasets/keyframes/to.css\"."}
+ right: {}
+
+---- tests::keyframe_from stdout ----
+
+thread 'tests::keyframe_from' panicked at tests/keyframes.rs:27:9:
+assertion `left == right` failed
+  left: {"@keyframes \"from_test\" : the value \"from\" can be replaced by \"0%\" in file \"tests/datasets/keyframes/from.css\"."}
+ right: {}
+
+
+failures:
+    tests::keyframe_duplicates
+    tests::keyframe_from
+    tests::keyframe_to
+
+test result: FAILED. 1 passed; 3 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+error: test failed, to rerun pass `-p cssoptiadvisor --test keyframes`
+
+*** result: Failure(101)
